@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>firewallµÇÂ¼</title>
+    <style>
+        body{
+            background-color: aliceblue;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .Container{
+            width: 100%;
+            margin: auto;
+        }
+        .title{
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            font-size: 72px;
+            color: rgb(49, 49, 49);
+            font-style: italic;
+        }
+        .login{
+            width: 400px;
+            margin: auto;
+            margin-top: 70px;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        input{
+            width: 300px;
+            height: 24px;
+            border-radius: 10px;
+            /* margin: auto; */
+            margin: 5px 0;
+        }
+        button{
+            width: 220px;
+            background-color: aqua;
+            margin: auto;
+            margin-left: 45px;
+            border-radius: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="../jquery.js"></script>
+    <script>
+        function checkUser(){
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var param = "username="+username+"&password="+password;
+            $.post("check.php",param,(data)=>{
+                if(data=="login-failed")
+                {
+                    window.alert(data);
+                }
+                else if(data=="login-success")
+                {
+                    window.location = "firewall.php";
+                }
+                else
+                {
+                    window.alert(data);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="Container">
+        <div class="title">
+            <font>firewallµÇÂ¼</font>
+        </div>
+        <div class="login">
+            <input name="username" type="text" id="username" placeholder="ÇëÊäÈëÓÃ»§Ãû"><br>
+            <input name="password" type="password" id="password" placeholder="ÇëÊäÈëÃÜÂë"><br>
+            <button onclick="checkUser()">µÇÂ¼</button>
+        </div>
+    </div>
+</body>
+</html>
